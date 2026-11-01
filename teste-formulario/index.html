@@ -155,31 +155,26 @@ img,svg,video{max-width:100%}
 
 
 /* Garantia: nenhum CTA no cabeçalho */
-header .header-cta,header a[data-whatsapp],.nav .header-cta{display:none!important}
+header .header-cta,.nav .header-cta{display:none!important}
 
 .brand-logo-image{width:46px;height:46px;display:block;object-fit:contain;border-radius:50%;flex-shrink:0}@media(max-width:720px){.brand-logo-image{width:40px;height:40px}}
-a[data-whatsapp]{font-family:inherit;cursor:pointer}a[data-whatsapp] .cta-wa-icon{pointer-events:none}
+a[data-formulario]{font-family:inherit;cursor:pointer}
 
-/* CTAs Conversão Plus — verde com pulsação suave */
-:root{--cp-cta-green:#16a34a;--cp-cta-green-hover:#15803d}
-.btn,.btn-primary,.btn-dark,.btn-white,.btn-outline,.floating-wa{
-  background:var(--cp-cta-green)!important;
+/* Variação formulário — CTAs com identidade vermelha, sem WhatsApp */
+:root{--cp-cta-red:#e60012;--cp-cta-red-hover:#c60010}
+a[data-formulario].btn{
+  background:var(--cp-cta-red)!important;
   color:#fff!important;
-  border-color:var(--cp-cta-green)!important;
-  animation:cpCtaPulse 2.2s ease-in-out infinite;
-  box-shadow:0 10px 26px rgba(22,163,74,.23);
+  border-color:var(--cp-cta-red)!important;
+  box-shadow:0 10px 26px rgba(230,0,18,.18);
+  animation:none!important;
 }
-.btn:hover,.floating-wa:hover{
-  background:var(--cp-cta-green-hover)!important;
-  border-color:var(--cp-cta-green-hover)!important;
+a[data-formulario].btn:hover{
+  background:var(--cp-cta-red-hover)!important;
+  border-color:var(--cp-cta-red-hover)!important;
 }
-@keyframes cpCtaPulse{
-  0%,100%{box-shadow:0 0 0 0 rgba(22,163,74,.33),0 10px 26px rgba(22,163,74,.23)}
-  55%{box-shadow:0 0 0 10px rgba(22,163,74,0),0 13px 30px rgba(22,163,74,.28)}
-}
-@media(prefers-reduced-motion:reduce){
-  .btn,.btn-primary,.btn-dark,.btn-white,.btn-outline,.floating-wa{animation:none!important}
-}
+#formulario{scroll-margin-top:99px}
+@media(max-width:720px){#formulario{scroll-margin-top:82px}}
 
 /* Headline ampliada e responsiva */
 .hero-copy h1{font-size:clamp(33px,3.5vw,48px);line-height:1.12}
@@ -236,7 +231,7 @@ html{scroll-padding-top:96px}
 </div></section>
 <div class="strip"><div class="container strip-inner"></div></div>
 
-<section class="problems" id="porque-ter-um-site"><div class="container split"><div><span class="eyebrow">Sua presença digital importa</span><h2>Seu cliente pesquisa antes de <span class="red">tomar uma decisão</span></h2><p class="lead">Quando alguém procura sua empresa, precisa encontrar informações claras, confiança e um caminho fácil para entrar em contato. Seu site pode ser o ponto de encontro entre a busca e a oportunidade.</p><ul class="checklist"><li>Apresente seus serviços de maneira organizada e profissional</li><li>Tenha um endereço digital próprio além das redes sociais</li><li>Facilite o contato com sua equipe pelo WhatsApp</li><li>Prepare seu negócio para futuras ações de divulgação</li></ul><a class="btn btn-dark" data-formulario href="#formulario"><span>Quero um site profissional</span><span class="arrow" aria-hidden="true">↗</span></a></div><div class="problem-visual search-visual" aria-label="Animação ilustrativa de pesquisa por dentista perto de mim e acesso ao site da Privilege Saúde">
+<section class="problems" id="porque-ter-um-site"><div class="container split"><div><span class="eyebrow">Sua presença digital importa</span><h2>Seu cliente pesquisa antes de <span class="red">tomar uma decisão</span></h2><p class="lead">Quando alguém procura sua empresa, precisa encontrar informações claras, confiança e um caminho fácil para entrar em contato. Seu site pode ser o ponto de encontro entre a busca e a oportunidade.</p><ul class="checklist"><li>Apresente seus serviços de maneira organizada e profissional</li><li>Tenha um endereço digital próprio além das redes sociais</li><li>Facilite o contato de clientes com sua empresa</li><li>Prepare seu negócio para futuras ações de divulgação</li></ul><a class="btn btn-dark" data-formulario href="#formulario"><span>Quero um site profissional</span><span class="arrow" aria-hidden="true">↗</span></a></div><div class="problem-visual search-visual" aria-label="Animação ilustrativa de pesquisa por dentista perto de mim e acesso ao site da Privilege Saúde">
   <div class="search-browser">
     <div class="search-browser-top"><span class="search-dot"></span><span class="search-dot"></span><span class="search-dot"></span><span class="search-url">google.com/search</span></div>
     <div class="search-screen">
@@ -395,4 +390,29 @@ html{scroll-padding-top:96px}
  });
 })();
 </script>
+
+<script>
+/* Navegação da versão de teste: todos os CTAs comerciais vão para o formulário na mesma página */
+(function(){
+  'use strict';
+  document.addEventListener('click',function(event){
+    const anchor=event.target instanceof Element?event.target.closest('a[data-formulario]'):null;
+    if(!anchor)return;
+    event.preventDefault();
+    const formSection=document.getElementById('formulario');
+    if(!formSection)return;
+    const popup=document.getElementById('exitOverlay');
+    if(popup&&popup.classList.contains('active')){
+      popup.classList.remove('active');
+      popup.setAttribute('aria-hidden','true');
+    }
+    // Remove qualquer target legado, mantendo o link de âncora como destino.
+    anchor.removeAttribute('target');
+    anchor.setAttribute('href','#formulario');
+    try{history.replaceState(null,'',location.pathname+location.search+'#formulario')}catch(_){}
+    formSection.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+  });
+})();
+</script>
+
 </body></html>
