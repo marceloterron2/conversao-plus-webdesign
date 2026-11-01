@@ -11,7 +11,7 @@ A landing page nesta pasta foi duplicada da original para testar a captura de le
 - Falhas de validação ou envio mantêm o formulário preenchido e mostram erro.
 
 ## Integração HubSpot: o que falta configurar
-O site ainda não recebe leads reais no HubSpot. Faltam dois IDs reais. Enquanto o código tiver placeholders, não envia nem redireciona, para evitar perder contatos.
+O site ainda não recebe leads reais no HubSpot. O ID da conta (portalId = 51184680) já foi preenchido e as propriedades foram mapeadas. Falta somente o formGuid de um formulário HubSpot próprio. Enquanto o código tiver esse placeholder, não envia nem redireciona, para evitar perder contatos.
 
 1. Em HubSpot → Marketing → Formulários, crie um formulário chamado: Conversão Plus — Solicitação de Site Profissional (Teste B).
 2. Adicione e publique os campos vinculados às propriedades de contato:
@@ -19,14 +19,14 @@ O site ainda não recebe leads reais no HubSpot. Faltam dois IDs reais. Enquanto
    - lastname — sobrenome (propriedade padrão)
    - email — e-mail (padrão)
    - phone — telefone (padrão)
-   - possui_site — propriedade personalizada de texto: Sim ou Não
-   - instagram — propriedade personalizada de texto
+   - voc_j_tem_um_site_hoje — propriedade existente de texto: Sim ou Não
+   - instagram_empresa — propriedade existente de texto
 3. Configure no HubSpot o consentimento para processamento dos dados em alinhamento com a finalidade informada no formulário. Não inscreva automaticamente o contato em comunicações de marketing.
-4. Em formulário publicado → Get embed code / Obter código de incorporação, copie o portalId (ID da conta) e formId (GUID do formulário).
-5. Edite somente as duas constantes no arquivo teste-formulario/index.html:
-   HUBSPOT_PORTAL_ID = 'SEU_PORTAL_ID';
-   HUBSPOT_FORM_ID = 'SEU_FORM_GUID';
-6. Confira os nomes internos das propriedades usadas no HUBSPOT_FIELDS. Se a conta usar nomes diferentes, atualize o mapeamento de campos.
+4. Publique o novo formulário. Ele aparecerá na lista de formulários conectados ao HubSpot. Se preferir, copie o formId (GUID) pelo código de incorporação.
+5. Edite somente a constante do GUID no arquivo teste-formulario/index.html:
+   HUBSPOT_PORTAL_ID = '51184680'; // já configurado
+   HUBSPOT_FORM_ID = 'SEU_FORM_GUID'; // trocar pelo GUID do novo formulário
+6. O mapeamento de propriedades reais da conta foi confirmado pela conexão: firstname, lastname, email, phone, voc_j_tem_um_site_hoje e instagram_empresa. Os nomes no novo formulário devem corresponder exatamente.
 7. Não coloque tokens privados, senhas ou chaves secretas no HTML. Esta integração usa o endpoint público do HubSpot.
 8. Faça um envio de teste e confira os registros em Marketing → Formulários e CRM → Contatos antes de direcionar anúncios.
 
