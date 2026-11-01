@@ -19,7 +19,7 @@
     var link = target instanceof Element
       ? target.closest('a[href^="https://api.cqc.onpromedia.com.br/t/"]')
       : null;
-    if (!link || typeof window.gtag !== 'function') return;
+    if (!link || link.hasAttribute('data-whatsapp') || typeof window.gtag !== 'function') return;
     gtag('event', 'conversion', {
       'send_to': 'AW-18520976220/A9WwCJq_sq0dENzWvv9E',
       'value': 1.0,
@@ -199,6 +199,40 @@ a[data-whatsapp]{font-family:inherit;cursor:pointer}a[data-whatsapp] .cta-wa-ico
 /* Headline ampliada e responsiva */
 .hero-copy h1{font-size:clamp(33px,3.5vw,48px);line-height:1.12}
 @media(max-width:720px){.hero-copy h1{font-size:clamp(24px,6.4vw,32px)}}
+
+/* Formulário de solicitação de orçamento | Conversão Plus */
+.cp-lead-overlay[hidden],.cp-lead-step[hidden]{display:none!important}
+.cp-lead-overlay{position:fixed;inset:0;z-index:2147483645;background:rgba(11,12,17,.78);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:18px;overflow:auto}
+.cp-lead-dialog{position:relative;background:#fff;border:1px solid #f0e8e9;border-radius:24px;box-shadow:0 25px 85px rgba(0,0,0,.3);width:min(100%,550px);max-height:min(92dvh,880px);overflow:auto;padding:34px;color:#15161b}
+.cp-lead-close{position:absolute;right:17px;top:16px;width:38px;height:38px;background:#f4f4f5;border:0;border-radius:50%;font-size:24px;color:#303038;line-height:1;display:grid;place-items:center}
+.cp-lead-dialog .cp-lead-eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:900;color:#e60012;margin-bottom:10px}
+.cp-lead-dialog h2{font-size:clamp(25px,5vw,34px);line-height:1.17;letter-spacing:-.06em;padding-right:30px}
+.cp-lead-dialog .cp-lead-description{font-size:14px;line-height:1.55;color:#666873;margin:12px 0 24px}
+.cp-lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cp-lead-field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.cp-lead-field.cp-lead-full{grid-column:1/-1}
+.cp-lead-field label,.cp-lead-field legend{font:700 12px 'DM Sans',Arial,sans-serif;color:#26262c;margin:0}
+.cp-lead-field input{width:100%;height:49px;border-radius:12px;border:1px solid #dcdde2;padding:0 14px;background:#fff;color:#16161b;font:500 14px 'DM Sans',Arial,sans-serif;outline:none}
+.cp-lead-field input:focus-visible,.cp-lead-radio:focus-within{border-color:#e60012;box-shadow:0 0 0 3px rgba(230,0,18,.1)}
+.cp-lead-field input::placeholder{color:#a1a2aa}
+.cp-lead-field fieldset,.cp-lead-field.cp-lead-radio-group{border:none;padding:0;min-width:0}
+.cp-lead-options{display:flex;gap:10px;margin-top:9px}
+.cp-lead-radio{display:flex;align-items:center;gap:8px;min-height:47px;flex:1;border:1px solid #dcdde2;padding:0 12px;border-radius:12px;cursor:pointer;font-size:14px;font-weight:700}
+.cp-lead-radio input{width:16px;height:16px;accent-color:#e60012;margin:0}
+.cp-lead-consent{display:flex;gap:10px;align-items:flex-start;margin:19px 0 15px;font-size:12px;color:#62646d;line-height:1.5}
+.cp-lead-consent input{width:17px;height:17px;accent-color:#e60012;margin-top:1px;flex:0 0 auto}
+.cp-lead-submit{display:flex;align-items:center;justify-content:center;width:100%;min-height:53px;border:0;background:#e60012;color:#fff;border-radius:100px;font:800 14px 'DM Sans',Arial,sans-serif;padding:14px 20px;cursor:pointer}
+.cp-lead-submit:hover{background:#c60010}
+.cp-lead-note{margin-top:13px;color:#777984;font-size:11px;line-height:1.5}
+.cp-lead-message{display:block;width:100%;min-height:190px;padding:14px;font:500 13px/1.65 'DM Sans',Arial,sans-serif;border:1px solid #d9dade;border-radius:12px;background:#fafafa;resize:vertical;color:#2c2c32;margin-bottom:12px}
+.cp-lead-buttons{display:flex;flex-wrap:wrap;gap:10px}
+.cp-lead-buttons button,.cp-lead-buttons a{flex:1 1 190px;border-radius:100px;min-height:48px;display:grid;place-items:center;padding:12px 16px;font:800 13px 'DM Sans',Arial,sans-serif;text-decoration:none;text-align:center}
+.cp-lead-copy{border:1px solid #dedee2;background:white;color:#1c1c20}
+.cp-lead-open{background:#e60012;color:white;border:1px solid #e60012}
+.cp-lead-instruction{color:#666873;font-size:13px;line-height:1.55;margin:14px 0}
+.cp-lead-status{font-size:12px;color:#3e6b47;margin-top:8px;min-height:18px}
+@media(max-width:600px){.cp-lead-overlay{align-items:flex-start;padding:10px}.cp-lead-dialog{padding:26px 19px 20px;margin:auto 0;max-height:calc(100dvh - 20px);border-radius:19px}.cp-lead-grid{grid-template-columns:1fr;gap:13px}.cp-lead-field.cp-lead-full{grid-column:auto}.cp-lead-dialog h2{font-size:27px}}
+
 </style>
 <link rel="icon" type="image/webp" href="data:image/webp;base64,UklGRigCAABXRUJQVlA4IBwCAADwDACdASpAAEAAPpVCm0olo6IhqBQMqLASiWYAz4wycPes31AbYDno9Nd9ADyx/ZiX4K0FAsbn49jl3EDwiAZw2GfcPf64q1R9VtBdjYRRYerpsub5+NOXt5BWfpAllI2mvbjCrw4kb0s9IR+vV9QAAP77EHvEgpTkQhrk7ed3U7Q2vms98M8TttaLqqq52tllf6IEoobOS5nI3RjY2aPdEent7I51tVnGi99RO0OPYd7VErd9+HVUHqVL8/uRj0ez//PHqAurO/vY8eTgPSvOtuSTTu0h/uWercFr9//k2+C748LZcfV170ja2xhqB0/g9/kzgto3/JX6vqjSCVFYQx5b/TD1bLSMEi9tVn3oduNMrMF0rzQQkV7uUOIffmPf8W+A4IvK6gHgd5P1PCjPx0NMrvUalJxUhGtfPx586bFaNjhW81CAqa0bgqTI+5/4t5NI9f2syVR7A5EES2IsVjrzHjKOvX6MGxzIpk/hfGvDgSr+vyMJKRDvDCrYehAHjQGIMYPqUlPoNigp4fs7wZrElb+fs/yWpro1b2x38/EZNtYn6zxBaxvn8WcCbFnEeX9MrHjPukv2apNraBmzbONyClR7H/7/8yjwyQ3XNzvZ5cU+vNxLDs7lbj8vNbx/rzk5v7EKHsIB8twrqALmHxsedMOtv3D/4dH97JfmA8pBmyhTlcSIzwJ3KY8K9YWuraPj+TThujKQAAA=">
 <link rel="apple-touch-icon" href="data:image/webp;base64,UklGRigCAABXRUJQVlA4IBwCAADwDACdASpAAEAAPpVCm0olo6IhqBQMqLASiWYAz4wycPes31AbYDno9Nd9ADyx/ZiX4K0FAsbn49jl3EDwiAZw2GfcPf64q1R9VtBdjYRRYerpsub5+NOXt5BWfpAllI2mvbjCrw4kb0s9IR+vV9QAAP77EHvEgpTkQhrk7ed3U7Q2vms98M8TttaLqqq52tllf6IEoobOS5nI3RjY2aPdEent7I51tVnGi99RO0OPYd7VErd9+HVUHqVL8/uRj0ez//PHqAurO/vY8eTgPSvOtuSTTu0h/uWercFr9//k2+C748LZcfV170ja2xhqB0/g9/kzgto3/JX6vqjSCVFYQx5b/TD1bLSMEi9tVn3oduNMrMF0rzQQkV7uUOIffmPf8W+A4IvK6gHgd5P1PCjPx0NMrvUalJxUhGtfPx586bFaNjhW81CAqa0bgqTI+5/4t5NI9f2syVR7A5EES2IsVjrzHjKOvX6MGxzIpk/hfGvDgSr+vyMJKRDvDCrYehAHjQGIMYPqUlPoNigp4fs7wZrElb+fs/yWpro1b2x38/EZNtYn6zxBaxvn8WcCbFnEeX9MrHjPukv2apNraBmzbONyClR7H/7/8yjwyQ3XNzvZ5cU+vNxLDs7lbj8vNbx/rzk5v7EKHsIB8twrqALmHxsedMOtv3D/4dH97JfmA8pBmyhTlcSIzwJ3KY8K9YWuraPj+TThujKQAAA=">
@@ -242,6 +276,48 @@ a[data-whatsapp]{font-family:inherit;cursor:pointer}a[data-whatsapp] .cta-wa-ico
 <section class="closing"><div class="container"><div class="closing-box"><div><h2>Vamos transformar a presença digital da sua empresa?</h2><p>Converse com a Conversão Plus e descubra a solução ideal para seu próximo site</p></div><a class="btn btn-white" data-whatsapp href="https://api.cqc.onpromedia.com.br/t/1A422BE8" target="_blank" rel="noopener noreferrer"><svg class="cta-wa-icon" width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span>Quero um site profissional</span></a></div></div></section>
 </main>
 <footer><div class="container"><div class="footer-main"><div><a class="brand" href="#inicio"><img class="brand-logo-image" src="data:image/webp;base64,UklGRigCAABXRUJQVlA4IBwCAADwDACdASpAAEAAPpVCm0olo6IhqBQMqLASiWYAz4wycPes31AbYDno9Nd9ADyx/ZiX4K0FAsbn49jl3EDwiAZw2GfcPf64q1R9VtBdjYRRYerpsub5+NOXt5BWfpAllI2mvbjCrw4kb0s9IR+vV9QAAP77EHvEgpTkQhrk7ed3U7Q2vms98M8TttaLqqq52tllf6IEoobOS5nI3RjY2aPdEent7I51tVnGi99RO0OPYd7VErd9+HVUHqVL8/uRj0ez//PHqAurO/vY8eTgPSvOtuSTTu0h/uWercFr9//k2+C748LZcfV170ja2xhqB0/g9/kzgto3/JX6vqjSCVFYQx5b/TD1bLSMEi9tVn3oduNMrMF0rzQQkV7uUOIffmPf8W+A4IvK6gHgd5P1PCjPx0NMrvUalJxUhGtfPx586bFaNjhW81CAqa0bgqTI+5/4t5NI9f2syVR7A5EES2IsVjrzHjKOvX6MGxzIpk/hfGvDgSr+vyMJKRDvDCrYehAHjQGIMYPqUlPoNigp4fs7wZrElb+fs/yWpro1b2x38/EZNtYn6zxBaxvn8WcCbFnEeX9MrHjPukv2apNraBmzbONyClR7H/7/8yjwyQ3XNzvZ5cU+vNxLDs7lbj8vNbx/rzk5v7EKHsIB8twrqALmHxsedMOtv3D/4dH97JfmA8pBmyhTlcSIzwJ3KY8K9YWuraPj+TThujKQAAA=" alt="" width="46" height="46" loading="lazy"><span class="brand-name">CONVERSÃO<br><b>PLUS</b></span></a><p>Sites profissionais desenvolvidos para valorizar sua empresa, fortalecer sua presença digital e facilitar novas oportunidades.</p></div><nav class="footer-links" aria-label="Navegação do rodapé"><a href="#solucoes">Soluções</a><a href="#processo">Processo</a><a href="#exemplos">Portfólio</a><a href="#duvidas">Dúvidas</a></nav></div><div class="footer-bottom"><span>© <span id="year">2026</span> Conversão Plus. Todos os direitos reservados.</span><span>Design e estratégia para negócios que querem evoluir.</span></div></div></footer>
+
+<!-- Pop-up de orçamento: apenas formulário no navegador, sem armazenamento automático -->
+<div id="cpLeadOverlay" class="cp-lead-overlay" hidden>
+  <div class="cp-lead-dialog" role="dialog" aria-modal="true" aria-labelledby="cpLeadTitle" aria-describedby="cpLeadDesc">
+    <button type="button" class="cp-lead-close" id="cpLeadClose" aria-label="Fechar formulário">×</button>
+    <div class="cp-lead-step" id="cpLeadStepForm">
+      <div class="cp-lead-eyebrow">Solicite seu orçamento</div>
+      <h2 id="cpLeadTitle">Vamos criar o site da sua empresa?</h2>
+      <p class="cp-lead-description" id="cpLeadDesc">Preencha algumas informações para conversar com a Conversão Plus sobre seu projeto</p>
+      <form id="cpLeadForm">
+        <div class="cp-lead-grid">
+          <div class="cp-lead-field cp-lead-full"><label for="cpLeadName">Nome completo *</label><input id="cpLeadName" name="nome" type="text" autocomplete="name" maxlength="100" placeholder="Como podemos chamar você?" required></div>
+          <div class="cp-lead-field cp-lead-full cp-lead-radio-group">
+            <fieldset><legend>Você já tem um site? *</legend><div class="cp-lead-options">
+              <label class="cp-lead-radio"><input type="radio" name="tem_site" value="Sim" required> Sim</label>
+              <label class="cp-lead-radio"><input type="radio" name="tem_site" value="Não"> Não</label>
+            </div></fieldset>
+          </div>
+          <div class="cp-lead-field cp-lead-full"><label for="cpLeadInstagram">Instagram (opcional)</label><input id="cpLeadInstagram" name="instagram" type="text" autocomplete="off" maxlength="80" placeholder="@suaempresa"></div>
+          <div class="cp-lead-field"><label for="cpLeadEmail">E-mail *</label><input id="cpLeadEmail" name="email" type="email" autocomplete="email" maxlength="120" placeholder="voce@empresa.com.br" required></div>
+          <div class="cp-lead-field"><label for="cpLeadPhone">WhatsApp *</label><input id="cpLeadPhone" name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" maxlength="22" minlength="10" placeholder="(11) 99999-9999" required></div>
+        </div>
+        <label class="cp-lead-consent"><input type="checkbox" id="cpLeadConsent" required><span>Concordo com o uso destes dados para atendimento e elaboração de orçamento pela Conversão Plus</span></label>
+        <button class="cp-lead-submit" type="submit">Continuar pelo WhatsApp ↗</button>
+        <p class="cp-lead-note">Seus dados não são salvos neste site. Você poderá enviá-los pelo WhatsApp no próximo passo</p>
+      </form>
+    </div>
+    <div class="cp-lead-step" id="cpLeadStepMessage" hidden>
+      <div class="cp-lead-eyebrow">Tudo pronto</div>
+      <h2>Agora envie sua solicitação</h2>
+      <p class="cp-lead-description">Sua mensagem está preparada. Copie o texto abaixo e cole na conversa do WhatsApp</p>
+      <textarea class="cp-lead-message" id="cpLeadMessage" aria-label="Mensagem com seus dados para o WhatsApp" readonly></textarea>
+      <div class="cp-lead-buttons">
+        <button class="cp-lead-copy" type="button" id="cpLeadCopy">Copiar mensagem</button>
+        <a class="cp-lead-open" id="cpLeadOpenWhatsApp" href="https://api.cqc.onpromedia.com.br/t/1A422BE8" target="_blank" rel="noopener noreferrer">Abrir WhatsApp ↗</a>
+      </div>
+      <p class="cp-lead-instruction">Ao abrir a conversa, cole a mensagem e toque em enviar. Seus dados só chegam à Conversão Plus quando você envia a mensagem</p>
+      <div class="cp-lead-status" role="status" aria-live="polite" id="cpLeadStatus"></div>
+    </div>
+  </div>
+</div>
+
 
 <div class="exit-overlay" id="exitOverlay" role="dialog" aria-modal="true" aria-labelledby="exitTitle" aria-hidden="true"><div class="exit-card"><button class="close-exit" type="button" id="closeExit" aria-label="Fechar">×</button><span class="eyebrow">Antes de sair</span><h2 id="exitTitle">Seu próximo cliente pode estar procurando sua empresa agora</h2><p>Não deixe sua presença digital para depois. Entenda como um site profissional pode valorizar o seu negócio.</p><a class="btn btn-primary" data-whatsapp href="https://api.cqc.onpromedia.com.br/t/1A422BE8" target="_blank" rel="noopener noreferrer"><svg class="cta-wa-icon" width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span>Quero um site profissional</span></a></div></div>
 <script>
@@ -291,6 +367,7 @@ a[data-whatsapp]{font-family:inherit;cursor:pointer}a[data-whatsapp] .cta-wa-ico
    btn.href = url;
    btn.target = '_blank';
    btn.rel = 'noopener noreferrer';
+   btn.setAttribute('data-whatsapp', '');
    
    
    btn.setAttribute('aria-label', 'Falar no WhatsApp');
@@ -302,4 +379,94 @@ a[data-whatsapp]{font-family:inherit;cursor:pointer}a[data-whatsapp] .cta-wa-ico
  else init();
 })();
 </script>
+
+<script>
+(function(){
+  'use strict';
+  const overlay=document.getElementById('cpLeadOverlay');
+  const dialog=overlay.querySelector('.cp-lead-dialog');
+  const form=document.getElementById('cpLeadForm');
+  const stepForm=document.getElementById('cpLeadStepForm');
+  const stepMessage=document.getElementById('cpLeadStepMessage');
+  const fieldName=document.getElementById('cpLeadName');
+  const messageBox=document.getElementById('cpLeadMessage');
+  const status=document.getElementById('cpLeadStatus');
+  const cqcButton=document.getElementById('cpLeadOpenWhatsApp');
+  let previousFocus=null;
+  function openForm(){
+    previousFocus=document.activeElement;
+    form.reset();messageBox.value='';status.textContent='';
+    stepForm.hidden=false;stepMessage.hidden=true;
+    const exit=document.getElementById('exitOverlay');
+    if(exit){exit.classList.remove('active');exit.setAttribute('aria-hidden','true');}
+    overlay.hidden=false;
+    document.body.style.overflow='hidden';
+    fieldName.focus();
+  }
+  function closeForm(){
+    overlay.hidden=true;document.body.style.overflow='';
+    messageBox.value='';
+    if(previousFocus && typeof previousFocus.focus==='function')previousFocus.focus();
+  }
+  document.addEventListener('click',function(e){
+    const el=e.target instanceof Element?e.target.closest('a[data-whatsapp]'):null;
+    if(!el || overlay.contains(el))return;
+    e.preventDefault();
+    openForm();
+  });
+  // Botão flutuante antigo é criado dinamicamente: abre o mesmo formulário.
+  const fab=document.querySelector('a[aria-label="Falar no WhatsApp"][style*="position:fixed"]');
+  if(fab)fab.setAttribute('data-whatsapp','');
+  document.getElementById('cpLeadClose').addEventListener('click',closeForm);
+  overlay.addEventListener('click',function(e){if(e.target===overlay)closeForm()});
+  document.addEventListener('keydown',function(e){
+    if(overlay.hidden)return;
+    if(e.key==='Escape'){e.preventDefault();closeForm();return;}
+    if(e.key==='Tab'){
+      const focusable=[...dialog.querySelectorAll('input:not([disabled]),button:not([disabled]),a[href],textarea:not([disabled])')].filter(el=>el.getClientRects().length);
+      if(!focusable.length)return;
+      const first=focusable[0],last=focusable[focusable.length-1];
+      if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+      else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+    }
+  });
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!form.reportValidity())return;
+    const d=new FormData(form);
+    const name=String(d.get('nome')||'').trim();
+    const site=String(d.get('tem_site')||'');
+    const instagram=String(d.get('instagram')||'').trim()||'Não informado';
+    const email=String(d.get('email')||'').trim();
+    const phone=String(d.get('whatsapp')||'').trim();
+    if(!name||!site||!email||phone.replace(/\D/g,'').length<10){return;}
+    messageBox.value=[
+      'Olá, Conversão Plus! Quero solicitar um orçamento para criar um site profissional.',
+      '',
+      'Nome completo: '+name,
+      'Já tenho site? '+site,
+      'Instagram: '+instagram,
+      'E-mail: '+email,
+      'WhatsApp: '+phone
+    ].join('\n');
+    stepForm.hidden=true;stepMessage.hidden=false;
+    status.textContent='';
+    cqcButton.focus();
+  });
+  document.getElementById('cpLeadCopy').addEventListener('click',async function(){
+    try{
+      await navigator.clipboard.writeText(messageBox.value);
+      status.textContent='Mensagem copiada! Agora abra o WhatsApp e cole o texto.';
+    }catch(err){
+      messageBox.focus();messageBox.select();
+      status.textContent='Selecione e copie a mensagem acima manualmente antes de abrir o WhatsApp.';
+    }
+  });
+  cqcButton.addEventListener('click',function(){
+    // A conversão Google Ads existente é registrada apenas no clique do link CQC.
+    status.textContent='Cole o texto copiado na conversa e toque em enviar.';
+  });
+})();
+</script>
+
 </body></html>
