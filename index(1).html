@@ -7,6 +7,26 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 </script>
+<!-- Google Ads: configuração da tag enviada pelo cliente -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18520976220"></script>
+<script>
+  gtag('config', 'AW-18520976220');
+</script>
+<!-- Conversão: somente no clique real nos links de WhatsApp do CQC -->
+<script>
+  document.addEventListener('click', function (event) {
+    var target = event.target;
+    var link = target instanceof Element
+      ? target.closest('a[href^="https://api.cqc.onpromedia.com.br/t/"]')
+      : null;
+    if (!link || typeof window.gtag !== 'function') return;
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18520976220/A9WwCJq_sq0dENzWvv9E',
+      'value': 1.0,
+      'currency': 'BRL'
+    });
+  }, true);
+</script>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
