@@ -154,6 +154,27 @@ header .header-cta,header a[data-whatsapp],.nav .header-cta{display:none!importa
 
 .brand-logo-image{width:46px;height:46px;display:block;object-fit:contain;border-radius:50%;flex-shrink:0}@media(max-width:720px){.brand-logo-image{width:40px;height:40px}}
 a[data-whatsapp]{font-family:inherit;cursor:pointer}a[data-whatsapp] .cta-wa-icon{pointer-events:none}
+
+/* CTAs Conversão Plus — verde com pulsação suave */
+:root{--cp-cta-green:#16a34a;--cp-cta-green-hover:#15803d}
+.btn,.btn-primary,.btn-dark,.btn-white,.btn-outline,.floating-wa{
+  background:var(--cp-cta-green)!important;
+  color:#fff!important;
+  border-color:var(--cp-cta-green)!important;
+  animation:cpCtaPulse 2.2s ease-in-out infinite;
+  box-shadow:0 10px 26px rgba(22,163,74,.23);
+}
+.btn:hover,.floating-wa:hover{
+  background:var(--cp-cta-green-hover)!important;
+  border-color:var(--cp-cta-green-hover)!important;
+}
+@keyframes cpCtaPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(22,163,74,.33),0 10px 26px rgba(22,163,74,.23)}
+  55%{box-shadow:0 0 0 10px rgba(22,163,74,0),0 13px 30px rgba(22,163,74,.28)}
+}
+@media(prefers-reduced-motion:reduce){
+  .btn,.btn-primary,.btn-dark,.btn-white,.btn-outline,.floating-wa{animation:none!important}
+}
 </style>
 <link rel="icon" type="image/webp" href="data:image/webp;base64,UklGRigCAABXRUJQVlA4IBwCAADwDACdASpAAEAAPpVCm0olo6IhqBQMqLASiWYAz4wycPes31AbYDno9Nd9ADyx/ZiX4K0FAsbn49jl3EDwiAZw2GfcPf64q1R9VtBdjYRRYerpsub5+NOXt5BWfpAllI2mvbjCrw4kb0s9IR+vV9QAAP77EHvEgpTkQhrk7ed3U7Q2vms98M8TttaLqqq52tllf6IEoobOS5nI3RjY2aPdEent7I51tVnGi99RO0OPYd7VErd9+HVUHqVL8/uRj0ez//PHqAurO/vY8eTgPSvOtuSTTu0h/uWercFr9//k2+C748LZcfV170ja2xhqB0/g9/kzgto3/JX6vqjSCVFYQx5b/TD1bLSMEi9tVn3oduNMrMF0rzQQkV7uUOIffmPf8W+A4IvK6gHgd5P1PCjPx0NMrvUalJxUhGtfPx586bFaNjhW81CAqa0bgqTI+5/4t5NI9f2syVR7A5EES2IsVjrzHjKOvX6MGxzIpk/hfGvDgSr+vyMJKRDvDCrYehAHjQGIMYPqUlPoNigp4fs7wZrElb+fs/yWpro1b2x38/EZNtYn6zxBaxvn8WcCbFnEeX9MrHjPukv2apNraBmzbONyClR7H/7/8yjwyQ3XNzvZ5cU+vNxLDs7lbj8vNbx/rzk5v7EKHsIB8twrqALmHxsedMOtv3D/4dH97JfmA8pBmyhTlcSIzwJ3KY8K9YWuraPj+TThujKQAAA=">
 <link rel="apple-touch-icon" href="data:image/webp;base64,UklGRigCAABXRUJQVlA4IBwCAADwDACdASpAAEAAPpVCm0olo6IhqBQMqLASiWYAz4wycPes31AbYDno9Nd9ADyx/ZiX4K0FAsbn49jl3EDwiAZw2GfcPf64q1R9VtBdjYRRYerpsub5+NOXt5BWfpAllI2mvbjCrw4kb0s9IR+vV9QAAP77EHvEgpTkQhrk7ed3U7Q2vms98M8TttaLqqq52tllf6IEoobOS5nI3RjY2aPdEent7I51tVnGi99RO0OPYd7VErd9+HVUHqVL8/uRj0ez//PHqAurO/vY8eTgPSvOtuSTTu0h/uWercFr9//k2+C748LZcfV170ja2xhqB0/g9/kzgto3/JX6vqjSCVFYQx5b/TD1bLSMEi9tVn3oduNMrMF0rzQQkV7uUOIffmPf8W+A4IvK6gHgd5P1PCjPx0NMrvUalJxUhGtfPx586bFaNjhW81CAqa0bgqTI+5/4t5NI9f2syVR7A5EES2IsVjrzHjKOvX6MGxzIpk/hfGvDgSr+vyMJKRDvDCrYehAHjQGIMYPqUlPoNigp4fs7wZrElb+fs/yWpro1b2x38/EZNtYn6zxBaxvn8WcCbFnEeX9MrHjPukv2apNraBmzbONyClR7H/7/8yjwyQ3XNzvZ5cU+vNxLDs7lbj8vNbx/rzk5v7EKHsIB8twrqALmHxsedMOtv3D/4dH97JfmA8pBmyhTlcSIzwJ3KY8K9YWuraPj+TThujKQAAA=">
