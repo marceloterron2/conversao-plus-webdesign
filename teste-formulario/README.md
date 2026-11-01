@@ -1,33 +1,47 @@
-# TESTE A/B — CONVERSÃO PLUS
+# Conversão Plus — Variante B do teste A/B com HubSpot
 
-Esta pasta duplica a landing page original com um formulário em vez de CTAs para WhatsApp.
-O index.html do site original na raiz foi preservado.
+A landing page nesta pasta foi duplicada da original para testar a captura de leads por formulário. A versão original na raiz do repositório continua intacta.
 
-## Fluxo
-- Todos os CTAs comerciais apontam para #formulario, inclusive botão flutuante e popup de saída.
-- Campos: nome completo, possui site (sim/não), Instagram opcional, email e WhatsApp.
-- Ao receber uma resposta de sucesso do Formspree, redireciona para obrigado.html.
-- Com erro, mantém os dados preenchidos e mostra aviso, sem agradecer falsamente.
+## Funcionamento
+- Os cinco CTAs comerciais apontam para #formulario na mesma página com rolagem suave.
+- O botão flutuante vermelho leva ao formulário.
+- EXCEÇÃO: o botão do pop-up de saída permanece no WhatsApp pelo link CQC https://api.cqc.onpromedia.com.br/t/1A422BE8 .
+- Campos: nome completo, possui site (Sim/Não), Instagram (opcional), e-mail, WhatsApp e consentimento.
+- Apenas após confirmação de recebimento pelo HubSpot, o visitante acessa ./obrigado.html.
+- Falhas de validação ou envio mantêm o formulário preenchido e mostram erro.
 
-## CONFIGURAÇÃO OBRIGATÓRIA ANTES DE ANUNCIAR
-1. Crie uma conta e um formulário em https://formspree.io/ .
-2. Copie o endpoint fornecido, como https://formspree.io/f/abcdefgh .
-3. No teste-formulario/index.html, substitua SEU_ID_AQUI no FORM_ENDPOINT pelo ID real.
-4. Faça um envio de teste e confirme o recebimento no painel Formspree.
-5. A página obrigado.html deve abrir somente após recebimento confirmado.
-6. Confirme a política de privacidade/consentimento e o acesso à caixa dos leads.
+## Integração HubSpot: o que falta configurar
+O site ainda não recebe leads reais no HubSpot. Faltam dois IDs reais. Enquanto o código tiver placeholders, não envia nem redireciona, para evitar perder contatos.
 
-Sem o endpoint o formulário NÃO envia nem redireciona: é proposital para evitar perda de leads.
+1. Em HubSpot → Marketing → Formulários, crie um formulário chamado: Conversão Plus — Solicitação de Site Profissional (Teste B).
+2. Adicione e publique os campos vinculados às propriedades de contato:
+   - firstname — nome (propriedade padrão)
+   - lastname — sobrenome (propriedade padrão)
+   - email — e-mail (padrão)
+   - phone — telefone (padrão)
+   - possui_site — propriedade personalizada de texto: Sim ou Não
+   - instagram — propriedade personalizada de texto
+3. Configure no HubSpot o consentimento para processamento dos dados em alinhamento com a finalidade informada no formulário. Não inscreva automaticamente o contato em comunicações de marketing.
+4. Em formulário publicado → Get embed code / Obter código de incorporação, copie o portalId (ID da conta) e formId (GUID do formulário).
+5. Edite somente as duas constantes no arquivo teste-formulario/index.html:
+   HUBSPOT_PORTAL_ID = 'SEU_PORTAL_ID';
+   HUBSPOT_FORM_ID = 'SEU_FORM_GUID';
+6. Confira os nomes internos das propriedades usadas no HUBSPOT_FIELDS. Se a conta usar nomes diferentes, atualize o mapeamento de campos.
+7. Não coloque tokens privados, senhas ou chaves secretas no HTML. Esta integração usa o endpoint público do HubSpot.
+8. Faça um envio de teste e confira os registros em Marketing → Formulários e CRM → Contatos antes de direcionar anúncios.
 
-## Links e ativos
-- Original: /
-- Teste: /teste-formulario/
-- Obrigado: /teste-formulario/obrigado.html
-- Os três arquivos de imagem do portfólio também foram copiados para teste-formulario/assets/portfolio/ .
+## Rastreio e análise
+- Formulário utiliza o endpoint público https://api.hsforms.com/submissions/v3/integration/submit/{portalId}/{formGuid}
+- O URL completo da página é enviado como pageUri, incluindo parâmetros de campanha. Valores de utm_* e gclid também estão em campos ocultos na página, mas não são enviados como propriedades extras sem a criação das propriedades no HubSpot.
+- Se o tracking HubSpot estiver ativo, o cookie hubspotutk é incluído no envio, vinculando a navegação anterior ao contato. Instale o script de rastreamento do HubSpot caso deseje essa associação.
+- Depois de envio confirmado, obrigado.html emite lead_formulario_enviado no dataLayer somente uma vez.
+- Configure uma conversão de formulário própria no Google Tag Manager/Google Ads, diferente da conversão de clique do WhatsApp.
+- O pop-up de saída usa o rastreador CQC separado da campanha de formulário.
+- IDs existentes: GTM-MMH3K29P e Google Ads AW-18520976220.
+- Controle acesso dos contatos no CRM, atualize a política de privacidade e respeite as regras de tratamento de dados.
+- O endpoint v3 é legado e, conforme anúncio do HubSpot, ficará sem suporte a partir de setembro de 2027; acompanhe futuras orientações de migração.
 
-## Medição
-- Parâmetros utm_source, utm_medium, utm_campaign, utm_content, utm_term, gclid e fbclid são enviados como campos ocultos.
-- GTM existente: GTM-MMH3K29P.
-- Google Ads: AW-18520976220.
-- Após envio confirmado, obrigado.html envia o evento dataLayer lead_formulario_enviado UMA vez.
-- Configure a conversão própria do formulário no GTM/Google Ads; não reutilize a conversão de clique no WhatsApp.
+## URLs esperadas (com GitHub Pages ativo)
+- Original: /conversao-plus-webdesign/
+- Variante B: /conversao-plus-webdesign/teste-formulario/
+- Obrigado: /conversao-plus-webdesign/teste-formulario/obrigado.html
