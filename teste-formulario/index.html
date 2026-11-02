@@ -443,4 +443,18 @@ html{scroll-padding-top:96px}
   else init();
 })();
 </script>
+<script>
+/* Conversão Google Ads: clique real para iniciar conversa no novo widget CQC. */
+document.addEventListener('click',function(event){
+  var button=event.target instanceof Element
+    ? event.target.closest('a.cqc-pop-btn[href^="https://api.cqc.onpromedia.com.br/t/"]')
+    : null;
+  if(!button || typeof window.gtag!=='function')return;
+  window.gtag('event','conversion',{
+    send_to:'AW-18520976220/A9WwCJq_sq0dENzWvv9E',
+    value:1.0,
+    currency:'BRL'
+  });
+},true);
+</script>
 </body></html>
