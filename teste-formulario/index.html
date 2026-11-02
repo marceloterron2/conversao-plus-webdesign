@@ -229,9 +229,43 @@ html{scroll-padding-top:96px}
 }
 .exit-card a[data-whatsapp] svg{flex:none;width:19px;height:19px}
 
+
+/* Formulário oficial HubSpot, largura responsiva dentro do card */
+.cp-form-card .hs-form-frame{display:block;width:100%;max-width:100%;min-width:0}
+.cp-form-card .hs-form-frame iframe{max-width:100%;border:0}
+.cp-form-card .cp-form-privacy{margin-top:16px}
 </style>
 <link rel="icon" type="image/webp" href="data:image/webp;base64,UklGRigCAABXRUJQVlA4IBwCAADwDACdASpAAEAAPpVCm0olo6IhqBQMqLASiWYAz4wycPes31AbYDno9Nd9ADyx/ZiX4K0FAsbn49jl3EDwiAZw2GfcPf64q1R9VtBdjYRRYerpsub5+NOXt5BWfpAllI2mvbjCrw4kb0s9IR+vV9QAAP77EHvEgpTkQhrk7ed3U7Q2vms98M8TttaLqqq52tllf6IEoobOS5nI3RjY2aPdEent7I51tVnGi99RO0OPYd7VErd9+HVUHqVL8/uRj0ez//PHqAurO/vY8eTgPSvOtuSTTu0h/uWercFr9//k2+C748LZcfV170ja2xhqB0/g9/kzgto3/JX6vqjSCVFYQx5b/TD1bLSMEi9tVn3oduNMrMF0rzQQkV7uUOIffmPf8W+A4IvK6gHgd5P1PCjPx0NMrvUalJxUhGtfPx586bFaNjhW81CAqa0bgqTI+5/4t5NI9f2syVR7A5EES2IsVjrzHjKOvX6MGxzIpk/hfGvDgSr+vyMJKRDvDCrYehAHjQGIMYPqUlPoNigp4fs7wZrElb+fs/yWpro1b2x38/EZNtYn6zxBaxvn8WcCbFnEeX9MrHjPukv2apNraBmzbONyClR7H/7/8yjwyQ3XNzvZ5cU+vNxLDs7lbj8vNbx/rzk5v7EKHsIB8twrqALmHxsedMOtv3D/4dH97JfmA8pBmyhTlcSIzwJ3KY8K9YWuraPj+TThujKQAAA=">
 <link rel="apple-touch-icon" href="data:image/webp;base64,UklGRigCAABXRUJQVlA4IBwCAADwDACdASpAAEAAPpVCm0olo6IhqBQMqLASiWYAz4wycPes31AbYDno9Nd9ADyx/ZiX4K0FAsbn49jl3EDwiAZw2GfcPf64q1R9VtBdjYRRYerpsub5+NOXt5BWfpAllI2mvbjCrw4kb0s9IR+vV9QAAP77EHvEgpTkQhrk7ed3U7Q2vms98M8TttaLqqq52tllf6IEoobOS5nI3RjY2aPdEent7I51tVnGi99RO0OPYd7VErd9+HVUHqVL8/uRj0ez//PHqAurO/vY8eTgPSvOtuSTTu0h/uWercFr9//k2+C748LZcfV170ja2xhqB0/g9/kzgto3/JX6vqjSCVFYQx5b/TD1bLSMEi9tVn3oduNMrMF0rzQQkV7uUOIffmPf8W+A4IvK6gHgd5P1PCjPx0NMrvUalJxUhGtfPx586bFaNjhW81CAqa0bgqTI+5/4t5NI9f2syVR7A5EES2IsVjrzHjKOvX6MGxzIpk/hfGvDgSr+vyMJKRDvDCrYehAHjQGIMYPqUlPoNigp4fs7wZrElb+fs/yWpro1b2x38/EZNtYn6zxBaxvn8WcCbFnEeX9MrHjPukv2apNraBmzbONyClR7H/7/8yjwyQ3XNzvZ5cU+vNxLDs7lbj8vNbx/rzk5v7EKHsIB8twrqALmHxsedMOtv3D/4dH97JfmA8pBmyhTlcSIzwJ3KY8K9YWuraPj+TThujKQAAA=">
+<script>
+/* HubSpot Forms — nova API de eventos. Só confirma leads do formulário configurado.
+   A navegação para outro domínio não compartilha sessionStorage; registramos o
+   evento na própria landing page antes do redirecionamento. */
+(function(){
+  'use strict';
+  var FORM_ID='f8aadaca-da2f-46c6-8aa6-00486f0ff45f';
+  var THANK_YOU_URL='https://sites.conversaoplus.com.br/obrigado/';
+  var sending=false;
+  window.addEventListener('hs-form-event:on-submission:success',function(event){
+    var detail=event&&event.detail||{};
+    if(String(detail.formId||'').toLowerCase()!==FORM_ID||sending)return;
+    sending=true;
+    window.dataLayer=window.dataLayer||[];
+    window.dataLayer.push({
+      event:'lead_formulario_enviado',
+      pagina:'teste-formulario',
+      hsFormId:FORM_ID,
+      hsFormInstanceId:detail.instanceId||''
+    });
+    // Direcionar somente após o HubSpot confirmar a submissão.
+    // Pequeno intervalo para permitir o processamento dos eventos de analytics.
+    window.setTimeout(function(){
+      window.location.assign(THANK_YOU_URL);
+    },450);
+  });
+})();
+</script>
+
 </head>
 <body>
 <header><div class="container nav">
@@ -279,22 +313,11 @@ html{scroll-padding-top:96px}
   </div>
   <div class="cp-form-card">
    <h3>Solicite um orçamento</h3>
-   <p class="cp-form-hint">Preencha os campos abaixo. Os marcados com * são obrigatórios</p>
-   <form id="cpLeadForm" method="POST">
-    <div class="cp-form-grid">
-     <div class="cp-field span2"><label for="cp_nome">Nome completo *</label><input id="cp_nome" name="nome_completo" type="text" autocomplete="name" maxlength="120" placeholder="Seu nome e sobrenome" required></div>
-     <div class="cp-field span2"><fieldset><legend>Você já possui um site? *</legend><div class="cp-radio-options"><label><input type="radio" name="possui_site" value="Sim" required> Sim</label><label><input type="radio" name="possui_site" value="Não" required> Não</label></div></fieldset></div>
-     <div class="cp-field span2"><label for="cp_instagram">Instagram (opcional)</label><input id="cp_instagram" name="instagram" type="text" maxlength="80" placeholder="@suaempresa"></div>
-     <div class="cp-field"><label for="cp_email">E-mail *</label><input id="cp_email" name="email" type="email" autocomplete="email" maxlength="150" placeholder="voce@empresa.com.br" required></div>
-     <div class="cp-field"><label for="cp_whatsapp">WhatsApp *</label><input id="cp_whatsapp" name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" minlength="10" maxlength="22" placeholder="(11) 99999-9999" required></div>
-    </div>
-    <label class="cp-consent"><input id="cp_consentimento" name="consentimento" type="checkbox" value="Sim" required><span>Autorizo o uso dos dados informados pela Conversão Plus para entrar em contato e atender minha solicitação de orçamento</span></label>
-    <div class="cp-honeypot" aria-hidden="true"><label for="cp_site_web">Não preencha</label><input id="cp_site_web" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
-    <input type="hidden" name="utm_source" id="cp_utm_source"><input type="hidden" name="utm_medium" id="cp_utm_medium"><input type="hidden" name="utm_campaign" id="cp_utm_campaign"><input type="hidden" name="utm_content" id="cp_utm_content"><input type="hidden" name="utm_term" id="cp_utm_term"><input type="hidden" name="gclid" id="cp_gclid"><input type="hidden" name="fbclid" id="cp_fbclid"><input type="hidden" name="pagina_origem" id="cp_pagina_origem">
-    <button type="submit" class="cp-form-submit" id="cpFormSubmit">Solicitar orçamento ↗</button>
-    <p role="status" aria-live="polite" id="cpFormStatus" class="cp-form-status"></p>
-    <p class="cp-form-privacy">Você será direcionado para a página de obrigado depois da confirmação do recebimento</p>
-   </form>
+   <p class="cp-form-hint">Informe seus dados no formulário abaixo para solicitar seu orçamento</p>
+   <!-- Formulário oficial do HubSpot — editável diretamente no CRM -->
+   <script src="https://js.hsforms.net/forms/embed/51184680.js" defer></script>
+   <div class="hs-form-frame" data-region="na1" data-form-id="f8aadaca-da2f-46c6-8aa6-00486f0ff45f" data-portal-id="51184680"></div>
+   <p class="cp-form-privacy">Seus dados serão enviados com segurança ao HubSpot. Após o envio, você será direcionado à página de confirmação</p>
   </div>
  </div>
 </section>
@@ -360,106 +383,7 @@ html{scroll-padding-top:96px}
  else init();
 })();
 </script>
-<script>
-(function(){
- 'use strict';
- // Integração HubSpot Forms API (envio de formulários sem chave privada no frontend).
- // Para ativar: crie um formulário HubSpot com os campos internos usados abaixo
- // e preencha HUBSPOT_PORTAL_ID + HUBSPOT_FORM_ID.
- const HUBSPOT_PORTAL_ID='51184680';
- const HUBSPOT_FORM_ID='SEU_FORM_GUID';
- const HUBSPOT_FIELDS={
-   firstname:'firstname',lastname:'lastname',email:'email',phone:'phone',
-   possuiSite:'voc_j_tem_um_site_hoje',instagram:'instagram_empresa'
- };
- const form=document.getElementById('cpLeadForm');
- const status=document.getElementById('cpFormStatus');
- const submit=document.getElementById('cpFormSubmit');
- if(!form)return;
- const params=new URLSearchParams(location.search);
- ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid'].forEach(k=>{
-   document.getElementById('cp_'+k).value=(params.get(k)||'').slice(0,200);
- });
- document.getElementById('cp_pagina_origem').value=location.href;
- function hubspotCookie(){
-   const match=document.cookie.match(/(?:^|;\s*)hubspotutk=([^;]+)/);
-   return match?decodeURIComponent(match[1]):null;
- }
- const exit=document.getElementById('exitOverlay');
- // O botão do pop-up abre WhatsApp; não interceptar esse link.
- form.addEventListener('submit',async function(e){
-   e.preventDefault();
-   status.textContent='';
-   const phone=document.getElementById('cp_whatsapp');
-   const digits=phone.value.replace(/\D/g,'');
-   phone.setCustomValidity(digits.length<10||digits.length>13?'Informe um WhatsApp válido com DDD':'');
-   if(!form.reportValidity()){phone.setCustomValidity('');return;}
-   phone.setCustomValidity('');
-   const configured=/^\d+$/.test(HUBSPOT_PORTAL_ID)&&
-      /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(HUBSPOT_FORM_ID);
-   if(!configured){
-     status.textContent='Formulário em configuração. Tente novamente em breve.';
-     return;
-   }
-   const fd=new FormData(form);
-   const fullName=String(fd.get('nome_completo')||'').trim().replace(/\s+/g,' ');
-   const i=fullName.indexOf(' ');
-   const first=i===-1?fullName:fullName.slice(0,i);
-   const last=i===-1?'':fullName.slice(i+1);
-   const fields=[
-     {objectTypeId:'0-1',name:HUBSPOT_FIELDS.firstname,value:first},
-     {objectTypeId:'0-1',name:HUBSPOT_FIELDS.lastname,value:last},
-     {objectTypeId:'0-1',name:HUBSPOT_FIELDS.email,value:String(fd.get('email')||'').trim()},
-     {objectTypeId:'0-1',name:HUBSPOT_FIELDS.phone,value:String(fd.get('whatsapp')||'').trim()},
-     {objectTypeId:'0-1',name:HUBSPOT_FIELDS.possuiSite,value:String(fd.get('possui_site')||'')},
-     {objectTypeId:'0-1',name:HUBSPOT_FIELDS.instagram,value:String(fd.get('instagram')||'').trim()}
-   ];
-   // Se Instagram não foi informado, não envie uma propriedade vazia.
-   const nonEmpty=fields.filter(f=>f.value!=='');
-   const context={
-     pageUri:window.location.href,
-     pageName:document.title
-   };
-   const hutk=hubspotCookie();
-   if(hutk)context.hutk=hutk;
-   const payload={
-     submittedAt:String(Date.now()),
-     fields:nonEmpty,
-     context:context,
-     legalConsentOptions:{
-       consent:{
-         consentToProcess:true,
-         text:'Autorizo o uso dos meus dados pela Conversão Plus para entrar em contato e atender minha solicitação de orçamento',
-         communications:[]
-       }
-     }
-   };
-   const endpoint='https://api.hsforms.com/submissions/v3/integration/submit/'+
-     encodeURIComponent(HUBSPOT_PORTAL_ID)+'/'+encodeURIComponent(HUBSPOT_FORM_ID);
-   submit.disabled=true;submit.textContent='Enviando...';
-   try{
-     const res=await fetch(endpoint,{
-       method:'POST',
-       headers:{'Content-Type':'application/json'},
-       body:JSON.stringify(payload)
-     });
-     if(!res.ok){
-       // Não gravar PII em logs; mensagem amigável em caso de validação incorreta
-       let detail='';
-       try{
-         const result=await res.json();
-         if(result.errors && result.errors.length)detail=' Verifique a configuração dos campos do formulário no HubSpot.';
-       }catch(_){}
-       throw new Error('Não foi possível enviar sua solicitação agora.'+detail);
-     }
-     try{sessionStorage.setItem('cp_formulario_recebido','1')}catch(_){}
-     window.location.assign('./obrigado.html');
-   }catch(err){
-     status.textContent=(err instanceof Error && err.message)?err.message:'Falha de conexão. Tente novamente.';
-     submit.disabled=false;submit.textContent='Solicitar orçamento ↗';
-   }
- });
-</script>
+
 
 <script>
 /* Navegação da versão de teste: todos os CTAs comerciais vão para o formulário na mesma página */
