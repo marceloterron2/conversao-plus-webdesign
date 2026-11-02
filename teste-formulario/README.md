@@ -14,8 +14,9 @@ O formulário manual foi substituído pelo código oficial fornecido pelo propri
 Os dados e os campos são geridos pelo formulário publicado no HubSpot, de ID `f8aadaca-da2f-46c6-8aa6-00486f0ff45f`. A configuração dos campos obrigatórios, consentimento e notificações deve ser feita diretamente no HubSpot. Não existe mais o formulário manual nem o código legado de envio API no HTML.
 
 ## Comportamento
-- Os 5 CTAs principais e o botão flutuante da landing page apontam para `#formulario`, sem abrir outra aba.
-- O botão de WhatsApp do pop-up de saída mantém o endereço CQC `https://api.cqc.onpromedia.com.br/t/1A422BE8`.
+- Os 5 CTAs principais mostram **Solicitar orçamento**, sem setas, e apontam para `#formulario` na mesma página.
+- O título e subtítulo redundantes do card do formulário foram removidos.
+- O pop-up de saída e o botão flutuante antigos foram removidos; o **novo widget de chat CQC** fornecido pelo proprietário mostra um botão flutuante verde, abre um chat e usa o endereço `https://api.cqc.onpromedia.com.br/t/720FD7D8` ao clicar em **Iniciar conversa**.
 - Um ouvinte do evento global `hs-form-event:on-submission:success` verifica o ID do formulário, emite `lead_formulario_enviado` no `dataLayer` da landing page e redireciona para `https://sites.conversaoplus.com.br/obrigado/`. Erros de envio não redirecionam.
 - O antigo arquivo `teste-formulario/obrigado.html` permanece no repositório por histórico, mas **não faz parte do fluxo atual**.
 
